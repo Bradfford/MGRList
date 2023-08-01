@@ -1,15 +1,14 @@
 //
-//  ViewController.swift
+//  RegisterUserViewController.swift
 //  MGRList
 //
-//  Created by Millfford Robert Lima Bradshaw on 18/07/23.
+//  Created by Millfford Robert Lima Bradshaw on 31/07/23.
 //
 
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
-
+class RegisterUserViewController: UIViewController {
     lazy var imageView = UIImageView(frame: .zero)
     lazy var onboardingText = UILabel(frame: .zero)
     lazy var startButton = UIButton(frame: .zero)
@@ -22,7 +21,7 @@ class ViewController: UIViewController {
     }
     
     func setupViews(){
-        self.view.backgroundColor = UIColor(named: "orange-color")
+        self.view.backgroundColor = UIColor(named: "blue-color")
         
         imageView.image = UIImage(named: "Check-list-Icon")
         imageView.layer.cornerRadius = 20
@@ -65,4 +64,3 @@ class ViewController: UIViewController {
     }
 
 }
-
