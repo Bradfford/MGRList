@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public final class WelcomeFactory {
+enum WelcomeFactory {
     static func make(delegate: WelcomeCoordinating) -> UIViewController {
         let coordinator = WelcomeCoordinator(delegate: delegate)
         let presenter = WelcomePresenter(coordinator: coordinator)

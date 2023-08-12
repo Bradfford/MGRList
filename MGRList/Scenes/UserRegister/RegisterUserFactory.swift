@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class RegisterUserFactory {
+enum RegisterUserFactory {
     static func make(delegate: RegisterUserCoordinating) -> UIViewController {
         let coordinator = RegisterUserCoordinator(delegate: delegate)
         let presenter = RegisterUserPresenter(coordinator: coordinator)

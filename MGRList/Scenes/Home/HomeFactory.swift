@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class HomeFactory {
+enum HomeFactory {
     static func make(delegate: HomeCoordinating) -> UIViewController {
         let coordinator = HomeCoordinator(delegate: delegate)
         let presenter = HomePresenter(coordinator: coordinator)
