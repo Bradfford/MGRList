@@ -11,7 +11,6 @@ public protocol ViewConfiguration: AnyObject {
     func buildViewHierarchy()
     func setupConstraints()
     func configureViews()
-    func configureStyles()
     func buildLayout()
 }
 
@@ -20,11 +19,9 @@ public extension ViewConfiguration {
         buildViewHierarchy()
         setupConstraints()
         configureViews()
-        configureStyles()
     }
     
     func configureViews() {}
-    func configureStyles() {}
 }
 
 public class BaseUIViewController<Interactor, V: UIView>: UIViewController, ViewConfiguration {

@@ -17,5 +17,4 @@ enum WelcomeFactory {
         presenter.viewController = viewController
         return viewController
     }
-    
 }
