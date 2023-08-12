@@ -48,6 +48,7 @@ public class BaseUIViewController<Interactor, V: UIView>: UIViewController, View
     
     public func buildViewHierarchy() {}
     public func setupConstraints() {}
+    public func configureViews() {}
 }
 
 public extension BaseUIViewController where Interactor == Void {

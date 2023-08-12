@@ -15,28 +15,54 @@ protocol RegisterUserTypeDisplaying: AnyObject {
 
 final class RegisterUserViewController: BaseUIViewController<RegisterUserInteracting, UIView> {
    
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Check-list-Icon")
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
-        return imageView
+    private lazy var titleLabel: UILabel = {
+        let title = UILabel()
+        title.text = RegisterUserString.title.localized
+        title.textAlignment = .center
+        title.font = UIFont(name: "Avenir-medium", size: 22)
+        return title
     }()
     
-    lazy var onboardingText: UILabel = {
-        let onboardingText = UILabel()
-        onboardingText.text = "teste tela 2"
-        onboardingText.textAlignment = .center
-        onboardingText.font = UIFont(name: "Avenir-medium", size: 12)
-        return onboardingText
+    lazy var descriptionLabel: UILabel = {
+        let description = UILabel()
+        description.text = RegisterUserString.description.localized
+        description.textAlignment = .center
+        description.numberOfLines = 0
+        description.font = UIFont(name: "Avenir-medium", size: 16)
+        return description
     }()
     
-    lazy var startButton:  UIButton = {
+    lazy var nameTextField: UITextField = {
+        let name = UITextField()
+        name.placeholder = RegisterUserString.nameField.localized
+        name.borderStyle = .roundedRect
+        name.textAlignment = .left
+        return name
+    }()
+    
+    lazy var emailTextField: UITextField = {
+        let email = UITextField()
+        email.placeholder = RegisterUserString.emailField.localized
+        email.borderStyle = .roundedRect
+        email.textAlignment = .left
+        return email
+    }()
+    
+    lazy var phoneNumberTextField: UITextField = {
+        let phoneNumber = UITextField()
+        phoneNumber.placeholder = RegisterUserString.phoneNumberField.localized
+        phoneNumber.borderStyle = .roundedRect
+        phoneNumber.textAlignment = .left
+        phoneNumber.keyboardType = .phonePad
+        return phoneNumber
+    }()
+    
+    lazy var saveButton:  UIButton = {
         let startButton = UIButton()
-        startButton.setTitle("Teste botão tela 2", for: .normal)
-        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        startButton.setTitle(RegisterUserString.saveButton.localized, for: .normal)
+        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         startButton.backgroundColor = .systemGreen
-        startButton.layer.cornerRadius = 20
+        startButton.layer.cornerRadius = 8
         startButton.clipsToBounds = true
         startButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         return startButton
@@ -44,34 +70,60 @@ final class RegisterUserViewController: BaseUIViewController<RegisterUserInterac
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
     }
     
     override func buildViewHierarchy() {
-        self.view.backgroundColor = UIColor(named: "blue-color")
-        view.addSubview(imageView)
-        view.addSubview(onboardingText)
-        view.addSubview(startButton)
+        self.view.backgroundColor = .white
+        view.addSubview(titleLabel)
+        view.addSubview(descriptionLabel)
+        view.addSubview(nameTextField)
+        view.addSubview(emailTextField)
+        view.addSubview(phoneNumberTextField)
+        view.addSubview(saveButton)
     }
 
     override func setupConstraints() {
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(100)
-            make.height.width.equalTo(200)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
         }
 
-        onboardingText.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).offset(32)
-            make.leading.trailing.equalTo(imageView)
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(titleLabel)
+        }
+        
+        nameTextField.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(32)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        emailTextField.snp.makeConstraints {
+            $0.top.equalTo(nameTextField.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        phoneNumberTextField.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
         }
 
-        startButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-40)
-            make.width.equalTo(120)
-            make.height.equalTo(40)
+        saveButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-40)
+            $0.leading.equalToSuperview().offset(40)
+            $0.trailing.equalToSuperview().inset(40)
+            $0.height.equalTo(48)
         }
+    }
+    
+    override func configureViews() {
+        
     }
     
     @objc func tapButton(){
@@ -90,4 +142,16 @@ extension RegisterUserViewController: RegisterUserTypeDisplaying {
 
     }
 
+}
+
+private extension RegisterUserViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UIGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
