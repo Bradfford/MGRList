@@ -13,6 +13,6 @@ enum WelcomeString: String {
     case welcomeButton
     
     var localized: String {
-        NSLocalizedString(String(String(describing: Self.self) + "_\(rawValue)" ), comment: "")
+        NSLocalizedString(String(describing: Self.self) + "_\(rawValue)", comment: "")
     }
 }

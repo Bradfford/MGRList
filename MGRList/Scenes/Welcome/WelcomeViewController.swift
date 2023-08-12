@@ -41,15 +41,15 @@ final class WelcomeViewController: BaseUIViewController<WelcomeInteracting, UIVi
         return onboardingText
     }()
     
-    lazy var startButton:  UIButton = {
-        let startButton = UIButton()
-        startButton.setTitle(WelcomeString.welcomeButton.localized, for: .normal)
-        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        startButton.backgroundColor = .systemGreen
-        startButton.layer.cornerRadius = 8
-        startButton.clipsToBounds = true
-        startButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-        return startButton
+    lazy var continueButton:  UIButton = {
+        let continueButton = UIButton()
+        continueButton.setTitle(WelcomeString.welcomeButton.localized, for: .normal)
+        continueButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        continueButton.backgroundColor = .systemGreen
+        continueButton.layer.cornerRadius = 8
+        continueButton.clipsToBounds = true
+        continueButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        return continueButton
     }()
     
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ final class WelcomeViewController: BaseUIViewController<WelcomeInteracting, UIVi
         view.addSubview(imageView)
         view.addSubview(onboardingTitle)
         view.addSubview(onboardingText)
-        view.addSubview(startButton)
+        view.addSubview(continueButton)
     }
     
     override func setupConstraints() {
@@ -85,7 +85,7 @@ final class WelcomeViewController: BaseUIViewController<WelcomeInteracting, UIVi
             $0.trailing.equalToSuperview().inset(20)
         }
 
-        startButton.snp.makeConstraints {
+        continueButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-40)
             $0.leading.equalToSuperview().offset(40)
