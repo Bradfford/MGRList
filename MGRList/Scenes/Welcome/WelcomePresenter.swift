@@ -15,9 +15,9 @@ protocol WelcomePresenting {
     func presentDidNextStep()
 }
 
-class WelcomePresenter {
-    var coordinator: WelcomeCoordinating
-    var viewController: WelcomeTypeDisplaying?
+final class WelcomePresenter {
+    private var coordinator: WelcomeCoordinating
+    weak var viewController: WelcomeTypeDisplaying?
     
     init(coordinator: WelcomeCoordinating) {
         self.coordinator = coordinator
@@ -26,7 +26,7 @@ class WelcomePresenter {
 
 extension WelcomePresenter: WelcomePresenting {
     func presentSuccess() {
-        coordinator.performAction(actiontype: .next)
+        coordinator.performAction(.next)
     }
     
     func presentError() {

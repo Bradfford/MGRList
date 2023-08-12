@@ -12,27 +12,19 @@ public enum WelcomeActionType {
 }
 
 protocol WelcomeCoordinating: AnyObject {
-    func performAction(actiontype: WelcomeActionType)
-}
-
-public protocol WelcomeCoordinatorDelegate: AnyObject {
-    func sendAction(actiontype: WelcomeActionType)
+    func performAction(_ actiontype: WelcomeActionType)
 }
 
 final class WelcomeCoordinator {
+    private weak var delegate: WelcomeCoordinating?
     
-    private weak var delegate: WelcomeCoordinatorDelegate?
-    
-    init(delegate: WelcomeCoordinatorDelegate?) {
+    init(delegate: WelcomeCoordinating?) {
         self.delegate = delegate
     }
 }
 
 extension WelcomeCoordinator: WelcomeCoordinating {
-    func performAction(actiontype: WelcomeActionType) {
-        switch actiontype {
-        case .next:
-            self.delegate?.sendAction(actiontype: actiontype)
-        }
+    func performAction(_ actiontype: WelcomeActionType) {
+        self.delegate?.performAction(actiontype)
     }
 }

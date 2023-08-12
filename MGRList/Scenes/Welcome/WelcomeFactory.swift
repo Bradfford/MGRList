@@ -8,9 +8,8 @@
 import Foundation
 import UIKit
 
-public class WelcomeFactory {
-    
-    public static func make(delegate: WelcomeCoordinatorDelegate) -> UIViewController {
+public final class WelcomeFactory {
+    static func make(delegate: WelcomeCoordinating) -> UIViewController {
         let coordinator = WelcomeCoordinator(delegate: delegate)
         let presenter = WelcomePresenter(coordinator: coordinator)
         let interactor = WelcomeInteractor(presenter: presenter)

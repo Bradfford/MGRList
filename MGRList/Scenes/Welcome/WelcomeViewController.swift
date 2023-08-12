@@ -26,7 +26,7 @@ final class WelcomeViewController: BaseUIViewController<WelcomeInteracting, UIVi
     
     lazy var onboardingText: UILabel = {
         let onboardingText = UILabel()
-        onboardingText.text = "teste teste te e testesteste teste"
+        onboardingText.text = "teste tela 1"
         onboardingText.textAlignment = .center
         onboardingText.font = UIFont(name: "Avenir-medium", size: 12)
         return onboardingText
@@ -34,7 +34,7 @@ final class WelcomeViewController: BaseUIViewController<WelcomeInteracting, UIVi
     
     lazy var startButton:  UIButton = {
         let startButton = UIButton()
-        startButton.setTitle("Começar", for: .normal)
+        startButton.setTitle("Ir para tela 2", for: .normal)
         startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         startButton.backgroundColor = .systemGreen
         startButton.layer.cornerRadius = 20
