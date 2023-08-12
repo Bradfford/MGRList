@@ -18,6 +18,7 @@ class InitialFlowCoordinator {
     }
     
     deinit {
+        print("InitialFlowCoordinator - deinit")
         self.childViewController = []
         self.childCoordinator = []
     }
@@ -33,9 +34,10 @@ extension InitialFlowCoordinator: Coordinating {
 //MARK: - WelcomeCordinating
 extension InitialFlowCoordinator {
     func startOnboardingFlow() {
-        let flowCoordinator = OnboardingFlowCoordinator(navigationController: navigationController)
-        self.childCoordinator.append(flowCoordinator)
-        flowCoordinator.start()
+        let coordinator = OnboardingFlowCoordinator(navigationController: navigationController)
+        self.childCoordinator.append(coordinator)
+        print(#function)
+        print("InitialFlowCoordinator -- childViewController count: \(childViewController.count) - childCoordinator count: \(childCoordinator.count)")
+        coordinator.start()
     }
-    
 }
