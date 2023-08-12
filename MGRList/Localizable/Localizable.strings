@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  MGRList
+
+  Created by Millfford Robert Lima Bradshaw on 12/08/23.
+  
+*/
+"WelcomeString_welcomeTitle" = "Olá!";
+"WelcomeString_welcomeText" = "Este APP tem a proposta de deixar as tarefas do seu dia-a-dia mais organizadas. Crie novas listas e desfrute dos recursos que foram disponibilizados.";
+"WelcomeString_welcomeButton" = "Continuar";
